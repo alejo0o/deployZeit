@@ -9,17 +9,17 @@ const resolvers = require('./lib/resolvers');
 
 const app = express();
 const port = process.env.port || 3000;
-//Obtiene los tipos del schema definido de graphql
+// Obtiene los tipos del schema definido de graphql
 const typeDefs = readFileSync(
-  join(__dirname, 'graphql', 'schema.graphql'),
+  join(__dirname, 'lib/graphql', 'schema.graphql'),
   'utf-8'
 );
-//Se crea el esquema
+// Se crea el esquema
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-app.use(cors()); //La API queda abierta al publico
+app.use(cors()); // La API queda abierta al publico
 
-//Se crea la ruta y se añade el middleware de express para el uso de graphql
+// Se crea la ruta y se añade el middleware de express para el uso de graphql
 app.use(
   '/api',
   gqlMiddleWare({

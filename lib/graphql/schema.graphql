@@ -1,0 +1,73 @@
+#Definicion de tipos
+type Pelicula {
+  peliculasid: ID!
+  claid: ID!
+  nombre: String!
+  fechadelanzamiento: String!
+  duracion: Int!
+  sinopsis: String!
+  trailer: String!
+}
+type Persona {
+  perid: ID!
+  paiid: ID!
+  pernombre: String!
+  perapellido: String!
+  perfechanacim: String!
+  perlugarnacim: String!
+}
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  email_verified_at: String
+  password: String!
+  remember_token: String
+}
+type Noticias {
+  peliculasid: ID!
+  notid: ID!
+  nottexto: String!
+  notfecha: String!
+}
+
+#Definicion de Inputs Create
+input PeliculaInput {
+  claid: ID!
+  nombre: String!
+  fechadelanzamiento: String!
+  duracion: Int!
+  sinopsis: String!
+  trailer: String!
+}
+
+#Definicion de Inputs Edit
+input PeliculaEditInput {
+  claid: ID
+  nombre: String
+  fechadelanzamiento: String
+  duracion: Int
+  sinopsis: String
+  trailer: String
+}
+
+#Operaciones
+#Queries
+type Query {
+  #Devuelve todas las peliculas
+  getPeliculas: [Pelicula]
+  #Devuelve una pelicula por su ID
+  getPelicula(id: ID!): Pelicula
+  #Devuelve todos los usuarios
+  getUsers: [User]
+  #Devuelve un usuario por su ID
+  getUser(id: ID!): User
+}
+type Mutation {
+  #Crea una nueva película
+  createPelicula(input: PeliculaInput): Pelicula
+  #Edita una película por su ID
+  editPelicula(id: ID!, input: PeliculaEditInput): Pelicula
+  #Elimina una película por su ID
+  deletePelicula(id: ID!): String
+}
