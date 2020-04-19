@@ -8,7 +8,7 @@ const cors = require('cors');
 const resolvers = require('./lib/resolvers');
 
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.port || 8000;
 // Obtiene los tipos del schema definido de graphql
 const typeDefs = readFileSync(
   join(__dirname, 'lib/graphql', 'schema.graphql'),
