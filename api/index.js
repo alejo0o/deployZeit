@@ -8,7 +8,7 @@ const cors = require('cors');
 const resolvers = require('./lib/resolvers');
 require('dotenv').config();
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const isDev = process.env.NODE_ENV !== 'production'; //Identifica si esta en produccion
 //si está en produccion activa graphiql sino lo desactiva
 // Obtiene los tipos del schema definido de graphql
@@ -30,5 +30,7 @@ app.use(
     graphiql: isDev,
   })
 );
+
+//app.listen(port,()=>console.log(port));
 
 module.exports = app;

@@ -40,7 +40,13 @@ input PeliculaInput {
   sinopsis: String!
   trailer: String!
 }
-
+input PersonaInput {
+  paiid: ID!
+  pernombre: String!
+  perapellido: String!
+  perfechanacim: String!
+  perlugarnacim: String!
+}
 #Definicion de Inputs Edit
 input PeliculaEditInput {
   claid: ID
@@ -50,7 +56,13 @@ input PeliculaEditInput {
   sinopsis: String
   trailer: String
 }
-
+input PersonaEditInput {
+  paiid: ID
+  pernombre: String
+  perapellido: String
+  perfechanacim: String
+  perlugarnacim: String
+}
 #Operaciones
 #Queries
 type Query {
@@ -58,10 +70,16 @@ type Query {
   getPeliculas: [Pelicula]
   #Devuelve una pelicula por su ID
   getPelicula(id: ID!): Pelicula
+
   #Devuelve todos los usuarios
   getUsers: [User]
   #Devuelve un usuario por su ID
   getUser(id: ID!): User
+
+  #Devuelve todas las personas
+  getPersonas: [Persona]
+  #Devuelve una persona por su ID
+  getPersona(id: ID!): Persona
 }
 type Mutation {
   #Crea una nueva película
@@ -70,4 +88,11 @@ type Mutation {
   editPelicula(id: ID!, input: PeliculaEditInput): Pelicula
   #Elimina una película por su ID
   deletePelicula(id: ID!): String
+
+  #Crea una nueva persona
+  createPersona(input: PersonaInput): Persona
+  #Edita una persona por su ID
+  editPersona(id: ID!, input: PersonaEditInput): Persona
+  #Elimina una persona por su ID
+  deletePersona(id: ID!): String
 }
