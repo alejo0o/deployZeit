@@ -39,6 +39,25 @@ const queries = {
     }
     return noticia;
   },
+  //Personas
+  getPersonas: async () => {
+    let personas;
+    try {
+      personas = await fetchData.personas.list();
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return personas;
+  },
+  getPersona: async (root, { id }) => {
+    let persona;
+    try {
+      persona = await fetchData.personas.read(id);
+    } catch (error) {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return persona;
+  },
 };
 
 module.exports = queries;

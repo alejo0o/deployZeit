@@ -63,6 +63,36 @@ const mutations = {
     }
     return `200: Eliminado exitoso de registro con id ${id}`;
   },
+  //Personas
+  createPersona: async (root, { input }) => {
+    let persona;
+    try {
+      persona = await fetchData.personas.create(input);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+
+    return persona;
+  },
+  editPersona: async (root, { id, input }) => {
+    let persona;
+    const defaults = await fetchData.personas.read(id); 
+    const newPersona = Object.assign(defaults, input); 
+    try {
+      persona = await fetchData.personas.update(id, newPersona);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return persona;
+  },
+  deletePersona: async (root, { id }) => {
+    try {
+      await fetchData.personas.remove(id);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return `200: Eliminado exitoso de registro con id ${id}`;
+  },  
 };
 
 module.exports = mutations;

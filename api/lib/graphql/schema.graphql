@@ -40,7 +40,13 @@ input PeliculaInput {
   sinopsis: String!
   trailer: String!
 }
-
+input PersonaInput {
+  paiid: ID!
+  pernombre: String!
+  perapellido: String!
+  perfechanacim: String!
+  perlugarnacim: String!
+}
 #Definicion de Inputs Edit
 input PeliculaEditInput {
   claid: ID
@@ -50,6 +56,7 @@ input PeliculaEditInput {
   sinopsis: String
   trailer: String
 }
+<<<<<<< HEAD
 input NoticiaInput {
   peliculasid: String!
   nottexto: String!
@@ -64,6 +71,15 @@ input NoticiaEditInput {
 }
 
 
+=======
+input PersonaEditInput {
+  paiid: ID
+  pernombre: String
+  perapellido: String
+  perfechanacim: String
+  perlugarnacim: String
+}
+>>>>>>> 71cefc03ccbc0904f17bb83202dff1175bb2696b
 #Operaciones
 #Queries
 type Query {
@@ -71,14 +87,23 @@ type Query {
   getPeliculas: [Pelicula]
   #Devuelve una pelicula por su ID
   getPelicula(id: ID!): Pelicula
+
   #Devuelve todos los usuarios
   getUsers: [User]
   #Devuelve un usuario por su ID
   getUser(id: ID!): User
+<<<<<<< HEAD
   #Devuelve todas las noticias
   getNoticias: [Noticia]
   #Devuelve una noticia por su ID
   getNoticia(id: ID!): Noticia
+=======
+
+  #Devuelve todas las personas
+  getPersonas: [Persona]
+  #Devuelve una persona por su ID
+  getPersona(id: ID!): Persona
+>>>>>>> 71cefc03ccbc0904f17bb83202dff1175bb2696b
 }
 type Mutation {
   #Crea una nueva película
@@ -87,10 +112,20 @@ type Mutation {
   editPelicula(id: ID!, input: PeliculaEditInput): Pelicula
   #Elimina una película por su ID
   deletePelicula(id: ID!): String
+<<<<<<< HEAD
   #Crea una nueva noticia
   createNoticia(input: NoticiaInput): Noticia
   #Edita una noticia por su ID
   editNoticia(id: ID!, input: NoticiaEditInput): Noticia
   #Elimina una Noticia por su ID
   deleteNoticia(id: ID!): String
+=======
+
+  #Crea una nueva persona
+  createPersona(input: PersonaInput): Persona
+  #Edita una persona por su ID
+  editPersona(id: ID!, input: PersonaEditInput): Persona
+  #Elimina una persona por su ID
+  deletePersona(id: ID!): String
+>>>>>>> 71cefc03ccbc0904f17bb83202dff1175bb2696b
 }
