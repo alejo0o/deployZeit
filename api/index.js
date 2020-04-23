@@ -31,6 +31,8 @@ app.use(
   })
 );
 
+module.exports = app;
 //app.listen(port,()=>console.log(port));
 
-module.exports = app;
+
+
