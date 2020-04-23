@@ -24,9 +24,9 @@ type User {
   password: String!
   remember_token: String
 }
-type Noticias {
-  peliculasid: ID!
+type Noticia {
   notid: ID!
+  peliculasid: ID!
   nottexto: String!
   notfecha: String!
 }
@@ -50,6 +50,19 @@ input PeliculaEditInput {
   sinopsis: String
   trailer: String
 }
+input NoticiaInput {
+  peliculasid: String!
+  nottexto: String!
+  notfecha: String!
+}
+
+#Definicion de Inputs Edit
+input NoticiaEditInput {
+  peliculasid: String
+  nottexto: String
+  notfecha: String
+}
+
 
 #Operaciones
 #Queries
@@ -62,6 +75,10 @@ type Query {
   getUsers: [User]
   #Devuelve un usuario por su ID
   getUser(id: ID!): User
+  #Devuelve todas las noticias
+  getNoticias: [Noticia]
+  #Devuelve una noticia por su ID
+  getNoticia(id: ID!): Noticia
 }
 type Mutation {
   #Crea una nueva película
@@ -70,4 +87,10 @@ type Mutation {
   editPelicula(id: ID!, input: PeliculaEditInput): Pelicula
   #Elimina una película por su ID
   deletePelicula(id: ID!): String
+  #Crea una nueva noticia
+  createNoticia(input: NoticiaInput): Noticia
+  #Edita una noticia por su ID
+  editNoticia(id: ID!, input: NoticiaEditInput): Noticia
+  #Elimina una Noticia por su ID
+  deleteNoticia(id: ID!): String
 }
