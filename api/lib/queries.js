@@ -33,7 +33,7 @@ const queries = {
   getNoticia: async (root, { id }) => {
     let noticia;
     try {
-      noticia = await fetchData.noticia.read(id);
+      noticia = await fetchData.noticias.read(id);
     } catch (error) {
       throw new Error('Fallo en la operacion del servidor');
     }
