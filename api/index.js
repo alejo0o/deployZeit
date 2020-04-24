@@ -1,3 +1,4 @@
+
 'use strict';
 const express = require('express');
 const { makeExecutableSchema } = require('graphql-tools');
@@ -33,6 +34,3 @@ app.use(
 
 module.exports = app;
 //app.listen(port,()=>console.log(port));
-
-
-

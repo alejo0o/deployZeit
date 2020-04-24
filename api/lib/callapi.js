@@ -2,7 +2,7 @@
 const fetch = require('node-fetch');
 
 require('dotenv').config();
-const BASE_URL = process.env.API_ENDPOINT;
+const BASE_URL = process.env.API_ENDPOINT || 'https://proyectocinegithub.herokuapp.com/api';
 
 async function callApi(endpoint, options = {}) {
   options.headers = {

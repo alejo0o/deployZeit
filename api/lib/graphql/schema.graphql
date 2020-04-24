@@ -30,6 +30,14 @@ type Noticia {
   nottexto: String!
   notfecha: String!
 }
+type Critica {
+  criid: ID!
+  peliculasid: ID!
+  id: ID!
+  critexto: String!
+  crifecha: String!
+  crivalor: Float!
+}
 
 #Definicion de Inputs Create
 input PeliculaInput {
@@ -46,6 +54,13 @@ input PersonaInput {
   perapellido: String!
   perfechanacim: String!
   perlugarnacim: String!
+}
+input CriticaInput {
+  peliculasid: ID!
+  id: ID!
+  critexto: String!
+  crifecha: String!
+  crivalor: Float!
 }
 #Definicion de Inputs Edit
 input PeliculaEditInput {
@@ -77,6 +92,13 @@ input PersonaEditInput {
   perfechanacim: String
   perlugarnacim: String
 }
+input CriticaEditInput {
+  peliculasid: ID
+  id: ID
+  critexto: String
+  crifecha: String
+  crivalor: Float
+}
 #Operaciones
 #Queries
 type Query {
@@ -98,6 +120,11 @@ type Query {
   getPersonas: [Persona]
   #Devuelve una persona por su ID
   getPersona(id: ID!): Persona
+
+  #Devuelve todas las criticas
+  getCriticas: [Critica]
+  #Devuelve una critica por su ID
+  getCritica(id: ID!): Critica
 }
 type Mutation {
   #Crea una nueva película
@@ -119,4 +146,11 @@ type Mutation {
   editPersona(id: ID!, input: PersonaEditInput): Persona
   #Elimina una persona por su ID
   deletePersona(id: ID!): String
+
+  #Crea una nueva critica
+  createCritica(input: CriticaInput): Critica
+  #Edita una critica por su ID
+  editCritica(id: ID!, input: CriticaEditInput): Critica
+  #Elimina una Critica por su ID
+  deleteCritica(id: ID!): String
 }
