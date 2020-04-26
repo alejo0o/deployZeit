@@ -7,6 +7,7 @@ type Pelicula {
   duracion: Int!
   sinopsis: String!
   trailer: String!
+  portada: String!
 }
 type Persona {
   perid: ID!
@@ -39,6 +40,7 @@ input PeliculaInput {
   duracion: Int!
   sinopsis: String!
   trailer: String!
+  portada: String!
 }
 input PersonaInput {
   paiid: ID!
@@ -55,6 +57,7 @@ input PeliculaEditInput {
   duracion: Int
   sinopsis: String
   trailer: String
+  portada: String
 }
 input PersonaEditInput {
   paiid: ID
