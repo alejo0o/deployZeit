@@ -58,6 +58,25 @@ const queries = {
     }
     return persona;
   },
+  //Criticas
+  getCriticas: async () => {
+    let criticas;
+    try {
+      criticas = await fetchData.criticas.list();
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return criticas;
+  },
+  getCritica: async (root, { id }) => {
+    let critica;
+    try {
+      critica = await fetchData.criticas.read(id);
+    } catch (error) {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return critica;
+  },
 };
 
 module.exports = queries;
