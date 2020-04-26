@@ -33,6 +33,8 @@ type Noticia {
   peliculasid: ID!
   nottexto: String!
   notfecha: String!
+  nottitulo:String!
+  notimagen:String!
 }
 
 type Critica {
@@ -74,8 +76,10 @@ input NoticiaInput {
   peliculasid: String!
   nottexto: String!
   notfecha: String!
-}
+  nottitulo:String!
+  notimagen:String!
 
+}
 #Definicion de Inputs Edit
 input PeliculaEditInput {
   claid: ID
@@ -87,10 +91,13 @@ input PeliculaEditInput {
   portada: String
 }
 
+
 input NoticiaEditInput {
   peliculasid: String
   nottexto: String
   notfecha: String
+  nottitulo:String
+  notimagen:String
 }
 
 input PersonaEditInput {
