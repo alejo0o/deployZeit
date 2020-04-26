@@ -9,6 +9,7 @@ type Pelicula {
   trailer: String!
   portada: String!
 }
+
 type Persona {
   perid: ID!
   paiid: ID!
@@ -17,6 +18,7 @@ type Persona {
   perfechanacim: String!
   perlugarnacim: String!
 }
+
 type User {
   id: ID!
   name: String!
@@ -25,12 +27,14 @@ type User {
   password: String!
   remember_token: String
 }
+
 type Noticia {
   notid: ID!
   peliculasid: ID!
   nottexto: String!
   notfecha: String!
 }
+
 type Critica {
   criid: ID!
   peliculasid: ID!
@@ -50,6 +54,7 @@ input PeliculaInput {
   trailer: String!
   portada: String!
 }
+
 input PersonaInput {
   paiid: ID!
   pernombre: String!
