@@ -25,11 +25,19 @@ type User {
   password: String!
   remember_token: String
 }
-type Noticias {
-  peliculasid: ID!
+type Noticia {
   notid: ID!
+  peliculasid: ID!
   nottexto: String!
   notfecha: String!
+}
+type Critica {
+  criid: ID!
+  peliculasid: ID!
+  id: ID!
+  critexto: String!
+  crifecha: String!
+  crivalor: Float!
 }
 
 #Definicion de Inputs Create
@@ -49,6 +57,20 @@ input PersonaInput {
   perfechanacim: String!
   perlugarnacim: String!
 }
+input CriticaInput {
+  peliculasid: ID!
+  id: ID!
+  critexto: String!
+  crifecha: String!
+  crivalor: Float!
+}
+
+input NoticiaInput {
+  peliculasid: String!
+  nottexto: String!
+  notfecha: String!
+}
+
 #Definicion de Inputs Edit
 input PeliculaEditInput {
   claid: ID
@@ -59,6 +81,13 @@ input PeliculaEditInput {
   trailer: String
   portada: String
 }
+
+input NoticiaEditInput {
+  peliculasid: String
+  nottexto: String
+  notfecha: String
+}
+
 input PersonaEditInput {
   paiid: ID
   pernombre: String
@@ -66,6 +95,15 @@ input PersonaEditInput {
   perfechanacim: String
   perlugarnacim: String
 }
+
+input CriticaEditInput {
+  peliculasid: ID
+  id: ID
+  critexto: String
+  crifecha: String
+  crivalor: Float
+}
+
 #Operaciones
 #Queries
 type Query {
@@ -79,10 +117,20 @@ type Query {
   #Devuelve un usuario por su ID
   getUser(id: ID!): User
 
+  #Devuelve todas las noticias
+  getNoticias: [Noticia]
+  #Devuelve una noticia por su ID
+  getNoticia(id: ID!): Noticia
+
   #Devuelve todas las personas
   getPersonas: [Persona]
   #Devuelve una persona por su ID
   getPersona(id: ID!): Persona
+
+  #Devuelve todas las criticas
+  getCriticas: [Critica]
+  #Devuelve una critica por su ID
+  getCritica(id: ID!): Critica
 }
 type Mutation {
   #Crea una nueva película
@@ -92,10 +140,24 @@ type Mutation {
   #Elimina una película por su ID
   deletePelicula(id: ID!): String
 
+  #Crea una nueva noticia
+  createNoticia(input: NoticiaInput): Noticia
+  #Edita una noticia por su ID
+  editNoticia(id: ID!, input: NoticiaEditInput): Noticia
+  #Elimina una Noticia por su ID
+  deleteNoticia(id: ID!): String
+
   #Crea una nueva persona
   createPersona(input: PersonaInput): Persona
   #Edita una persona por su ID
   editPersona(id: ID!, input: PersonaEditInput): Persona
   #Elimina una persona por su ID
   deletePersona(id: ID!): String
+
+  #Crea una nueva critica
+  createCritica(input: CriticaInput): Critica
+  #Edita una critica por su ID
+  editCritica(id: ID!, input: CriticaEditInput): Critica
+  #Elimina una Critica por su ID
+  deleteCritica(id: ID!): String
 }
