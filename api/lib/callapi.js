@@ -2,8 +2,7 @@
 const fetch = require('node-fetch');
 
 require('dotenv').config();
-const BASE_URL =
-  process.env.API_ENDPOINT || 'https://proyectocinegithub.herokuapp.com/api';
+const BASE_URL = process.env.API_ENDPOINT || 'http://127.0.0.1:8000/api';
 
 async function callApi(endpoint, options = {}) {
   options.headers = {
@@ -131,6 +130,12 @@ const api = {
     },
     getEstrenos(pageNumber) {
       return callApi(`/customResource/estrenos?page=${pageNumber}`);
+    },
+    getAnimesEstreno(pageNumber) {
+      return callApi(`/customResource/animes?page=${pageNumber}`);
+    },
+    getCriticasporPelicula(pageNumber, id) {
+      return callApi(`/customResource/${id}/usuarios?page=${pageNumber}`);
     },
   },
 };

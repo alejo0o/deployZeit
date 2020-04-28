@@ -33,8 +33,8 @@ type Noticia {
   peliculasid: ID!
   nottexto: String!
   notfecha: String!
-  nottitulo:String!
-  notimagen:String!
+  nottitulo: String!
+  notimagen: String!
 }
 
 type Critica {
@@ -53,6 +53,23 @@ type CriticaporValor {
   sinopsis: String!
   fechadelanzamiento: String!
   duracion: Int!
+  portada: String!
+  clanombre: String!
+}
+
+type CriticasporPelicula {
+  crifecha: String!
+  email: String!
+  critexto: String!
+  crivalor: Float!
+  criid: ID!
+}
+
+type AnimesporEstreno {
+  nombre: String!
+  fechadelanzamiento: String!
+  duracion: Int!
+  sinopsis: String!
   portada: String!
 }
 
@@ -86,9 +103,8 @@ input NoticiaInput {
   peliculasid: String!
   nottexto: String!
   notfecha: String!
-  nottitulo:String!
-  notimagen:String!
-
+  nottitulo: String!
+  notimagen: String!
 }
 #Definicion de Inputs Edit
 input PeliculaEditInput {
@@ -101,13 +117,12 @@ input PeliculaEditInput {
   portada: String
 }
 
-
 input NoticiaEditInput {
   peliculasid: String
   nottexto: String
   notfecha: String
-  nottitulo:String
-  notimagen:String
+  nottitulo: String
+  notimagen: String
 }
 
 input PersonaEditInput {
@@ -158,6 +173,10 @@ type Query {
   getPeliculasporEstreno(page: Int!): [Pelicula]
   #Devuelve las criticas ordenadas por valor de las peliculas asociadas
   getCriticasValor(page: Int!): [CriticaporValor]
+  #Devuelve todos los animes por estreno
+  getAnimesporEstreno(page: Int!): [AnimesporEstreno]
+  #Devuelve las criticas de los usuarios a una pelicula
+  getCriticasporPelicula(page: Int!, id: ID!): [CriticasporPelicula]
 }
 type Mutation {
   #Crea una nueva película
