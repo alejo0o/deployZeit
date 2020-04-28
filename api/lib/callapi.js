@@ -1,14 +1,16 @@
-'use strict';
-const fetch = require('node-fetch');
+"use strict";
+const fetch = require("node-fetch");
 
-require('dotenv').config();
+require("dotenv").config();
+//const BASE_URL = process.env.API_ENDPOINT || "http://127.0.0.1:8000/api";
+
 const BASE_URL =
-  process.env.API_ENDPOINT || 'https://proyectocinegithub.herokuapp.com/api';
+  process.env.API_ENDPOINT || "https://proyectocinegithub.herokuapp.com/api";
 
 async function callApi(endpoint, options = {}) {
   options.headers = {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   };
 
   const url = BASE_URL + endpoint;
@@ -22,7 +24,7 @@ const api = {
   peliculas: {
     list() {
       //throw new Error('Not found');
-      return callApi('/peliculas');
+      return callApi("/peliculas");
     },
     listPage(pageNumber) {
       return callApi(`/peliculas?page=${pageNumber}`);
@@ -30,7 +32,7 @@ const api = {
     create(pelicula) {
       //throw new Error('500: Server Error');
       return callApi(`/peliculas`, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(pelicula),
       });
     },
@@ -39,49 +41,53 @@ const api = {
     },
     update(peliculaId, updates) {
       return callApi(`/peliculas/${peliculaId}`, {
-        method: 'PUT',
+        method: "PUT",
         body: JSON.stringify(updates),
       });
     },
     // Lo hubiera llamado `delete`, pero `delete` es un keyword en JavaScript asi que no es buena idea :P
     remove(peliculaId) {
       return callApi(`/peliculas/${peliculaId}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
     },
   },
   personas: {
     list() {
-      return callApi('/personas');
+      return callApi("/personas");
+    },
+    listPage(pageNumber) {
+      return callApi(`/personas?page=${pageNumber}`);
     },
     create(persona) {
       return callApi(`/personas`, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(persona),
       });
     },
     read(personaId) {
       return callApi(`/personas/${personaId}`);
     },
+
     update(personaId, updates) {
       return callApi(`/personas/${personaId}`, {
-        method: 'PUT',
+        method: "PUT",
         body: JSON.stringify(updates),
       });
     },
     remove(personaId) {
       return callApi(`/personas/${personaId}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
     },
   },
   noticias: {
     list() {
-      return callApi('/noticias');
+      return callApi("/noticias");
     },
     create(noticia) {
       return callApi(`/noticias`, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(noticia),
       });
     },
@@ -90,23 +96,23 @@ const api = {
     },
     update(noticiaId, updates) {
       return callApi(`/noticias/${noticiaId}`, {
-        method: 'PUT',
+        method: "PUT",
         body: JSON.stringify(updates),
       });
     },
     remove(noticiaId) {
       return callApi(`/noticias/${noticiaId}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
     },
   },
   criticas: {
     list() {
-      return callApi('/criticas');
+      return callApi("/criticas");
     },
     create(critica) {
       return callApi(`/criticas`, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(critica),
       });
     },
@@ -115,13 +121,13 @@ const api = {
     },
     update(criticaId, updates) {
       return callApi(`/criticas/${criticaId}`, {
-        method: 'PUT',
+        method: "PUT",
         body: JSON.stringify(updates),
       });
     },
     remove(criticaId) {
       return callApi(`/criticas/${criticaId}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
     },
   },
@@ -131,6 +137,9 @@ const api = {
     },
     getEstrenos(pageNumber) {
       return callApi(`/customResource/estrenos?page=${pageNumber}`);
+    },
+    getNoticiasFecha(pageNumber) {
+      return callApi(`/customResource/noticias?page=${pageNumber}`);
     },
   },
 };

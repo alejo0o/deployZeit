@@ -33,8 +33,8 @@ type Noticia {
   peliculasid: ID!
   nottexto: String!
   notfecha: String!
-  nottitulo:String!
-  notimagen:String!
+  nottitulo: String!
+  notimagen: String!
 }
 
 type Critica {
@@ -86,9 +86,8 @@ input NoticiaInput {
   peliculasid: String!
   nottexto: String!
   notfecha: String!
-  nottitulo:String!
-  notimagen:String!
-
+  nottitulo: String!
+  notimagen: String!
 }
 #Definicion de Inputs Edit
 input PeliculaEditInput {
@@ -101,13 +100,12 @@ input PeliculaEditInput {
   portada: String
 }
 
-
 input NoticiaEditInput {
   peliculasid: String
   nottexto: String
   notfecha: String
-  nottitulo:String
-  notimagen:String
+  nottitulo: String
+  notimagen: String
 }
 
 input PersonaEditInput {
@@ -145,7 +143,7 @@ type Query {
   getNoticia(id: ID!): Noticia
 
   #Devuelve todas las personas
-  getPersonas: [Persona]
+  getPersonas(page: Int): [Persona]
   #Devuelve una persona por su ID
   getPersona(id: ID!): Persona
 
@@ -158,6 +156,8 @@ type Query {
   getPeliculasporEstreno(page: Int!): [Pelicula]
   #Devuelve las criticas ordenadas por valor de las peliculas asociadas
   getCriticasValor(page: Int!): [CriticaporValor]
+  #Devuelve las noticias ordenadas por fecha
+  getNoticiasFecha(page: Int!): [Noticia]
 }
 type Mutation {
   #Crea una nueva película
