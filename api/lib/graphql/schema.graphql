@@ -160,7 +160,7 @@ type Query {
   getNoticia(id: ID!): Noticia
 
   #Devuelve todas las personas
-  getPersonas: [Persona]
+  getPersonas(page: Int): [Persona]
   #Devuelve una persona por su ID
   getPersona(id: ID!): Persona
 
@@ -177,6 +177,8 @@ type Query {
   getAnimesporEstreno(page: Int!): [AnimesporEstreno]
   #Devuelve las criticas de los usuarios a una pelicula
   getCriticasporPelicula(page: Int!, id: ID!): [CriticasporPelicula]
+  #Devuelve las noticias ordenadas por fecha
+  getNoticiasFecha(page: Int!): [Noticia]
 }
 type Mutation {
   #Crea una nueva película

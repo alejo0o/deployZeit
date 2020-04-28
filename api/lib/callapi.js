@@ -4,6 +4,9 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 const BASE_URL = process.env.API_ENDPOINT || 'http://127.0.0.1:8000/api';
 
+/*const BASE_URL =
+  process.env.API_ENDPOINT || "https://proyectocinegithub.herokuapp.com/api";*/
+
 async function callApi(endpoint, options = {}) {
   options.headers = {
     'Content-Type': 'application/json',
@@ -53,6 +56,9 @@ const api = {
     list() {
       return callApi('/personas');
     },
+    listPage(pageNumber) {
+      return callApi(`/personas?page=${pageNumber}`);
+    },
     create(persona) {
       return callApi(`/personas`, {
         method: 'POST',
@@ -62,6 +68,7 @@ const api = {
     read(personaId) {
       return callApi(`/personas/${personaId}`);
     },
+
     update(personaId, updates) {
       return callApi(`/personas/${personaId}`, {
         method: 'PUT',
@@ -136,6 +143,9 @@ const api = {
     },
     getCriticasporPelicula(pageNumber, id) {
       return callApi(`/customResource/${id}/usuarios?page=${pageNumber}`);
+    },
+    getNoticiasFecha(pageNumber) {
+      return callApi(`/customResource/noticias?page=${pageNumber}`);
     },
   },
 };
