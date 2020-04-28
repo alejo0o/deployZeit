@@ -1,5 +1,5 @@
-"use strict";
-const fetchData = require("./callapi");
+'use strict';
+const fetchData = require('./callapi');
 const queries = {
   //Peliculas
   getPeliculas: async (root, { page }) => {
@@ -10,7 +10,7 @@ const queries = {
         : (peliculas = await fetchData.peliculas.listPage(page));
       peliculas = peliculas.results;
     } catch {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return peliculas;
   },
@@ -19,7 +19,7 @@ const queries = {
     try {
       pelicula = await fetchData.peliculas.read(id);
     } catch (error) {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return pelicula;
   },
@@ -32,7 +32,7 @@ const queries = {
         : (personas = await fetchData.personas.listPage(page));
       personas = personas.results;
     } catch {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return persona;
   },
@@ -41,17 +41,20 @@ const queries = {
     try {
       persona = await fetchData.personas.read(id);
     } catch (error) {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return persona;
   },
   //Noticias
-  getNoticias: async () => {
+  getNoticias: async (root, { page }) => {
     let noticias;
     try {
-      noticias = await fetchData.noticias.list();
+      !page
+        ? (noticias = await fetchData.noticias.list())
+        : (noticias = await fetchData.noticias.listPage(page));
+      noticias = noticias.results;
     } catch {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return noticias;
   },
@@ -60,18 +63,21 @@ const queries = {
     try {
       noticia = await fetchData.noticias.read(id);
     } catch (error) {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return noticia;
   },
 
   //Criticas
-  getCriticas: async () => {
+  getCriticas: async (root, { page }) => {
     let criticas;
     try {
-      criticas = await fetchData.criticas.list();
+      !page
+        ? (criticas = await fetchData.criticas.list())
+        : (criticas = await fetchData.criticas.listPage(page));
+      criticas = criticas.results;
     } catch {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return criticas;
   },
@@ -80,7 +86,7 @@ const queries = {
     try {
       critica = await fetchData.criticas.read(id);
     } catch (error) {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return critica;
   },
@@ -91,7 +97,7 @@ const queries = {
       recursos = await fetchData.customRequests.getEstrenos(page);
       recursos = recursos.results;
     } catch {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return recursos;
   },
@@ -101,7 +107,7 @@ const queries = {
       recursos = await fetchData.customRequests.getPromedioCriticas(page);
       recursos = recursos.results;
     } catch {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return recursos;
   },
@@ -112,7 +118,7 @@ const queries = {
       recursos = recursos.results;
       console.log(recursos);
     } catch {
-      throw new Error("Fallo en la operacion del servidor");
+      throw new Error('Fallo en la operacion del servidor');
     }
     return recursos;
   },

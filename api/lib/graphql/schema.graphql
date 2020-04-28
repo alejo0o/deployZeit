@@ -155,7 +155,7 @@ type Query {
   getUser(id: ID!): User
 
   #Devuelve todas las noticias
-  getNoticias: [Noticia]
+  getNoticias(page: Int): [Noticia]
   #Devuelve una noticia por su ID
   getNoticia(id: ID!): Noticia
 
@@ -165,7 +165,7 @@ type Query {
   getPersona(id: ID!): Persona
 
   #Devuelve todas las criticas
-  getCriticas: [Critica]
+  getCriticas(page: Int): [Critica]
   #Devuelve una critica por su ID
   getCritica(id: ID!): Critica
 

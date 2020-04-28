@@ -2,10 +2,10 @@
 const fetch = require('node-fetch');
 
 require('dotenv').config();
-const BASE_URL = process.env.API_ENDPOINT || 'http://127.0.0.1:8000/api';
+//const BASE_URL = process.env.API_ENDPOINT || 'http://127.0.0.1:8000/api';
 
-/*const BASE_URL =
-  process.env.API_ENDPOINT || "https://proyectocinegithub.herokuapp.com/api";*/
+const BASE_URL =
+  process.env.API_ENDPOINT || 'https://proyectocinegithub.herokuapp.com/api';
 
 async function callApi(endpoint, options = {}) {
   options.headers = {
@@ -85,6 +85,9 @@ const api = {
     list() {
       return callApi('/noticias');
     },
+    listPage(pageNumber) {
+      return callApi(`/noticias?page=${pageNumber}`);
+    },
     create(noticia) {
       return callApi(`/noticias`, {
         method: 'POST',
@@ -109,6 +112,9 @@ const api = {
   criticas: {
     list() {
       return callApi('/criticas');
+    },
+    listPage(pageNumber) {
+      return callApi(`/criticas?page=${pageNumber}`);
     },
     create(critica) {
       return callApi(`/criticas`, {
