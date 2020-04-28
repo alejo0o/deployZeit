@@ -77,7 +77,7 @@ type Query {
   getUser(id: ID!): User
 
   #Devuelve todas las personas
-  getPersonas: [Persona]
+  getPersonas(page: Int): [Persona]
   #Devuelve una persona por su ID
   getPersona(id: ID!): Persona
 }

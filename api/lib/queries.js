@@ -1,5 +1,5 @@
-'use strict';
-const fetchData = require('./callapi');
+"use strict";
+const fetchData = require("./callapi");
 const queries = {
   //Peliculas
   getPeliculas: async () => {
@@ -7,7 +7,7 @@ const queries = {
     try {
       peliculas = await fetchData.peliculas.list();
     } catch {
-      throw new Error('Fallo en la operacion del servidor');
+      throw new Error("Fallo en la operacion del servidor");
     }
     return peliculas;
   },
@@ -16,28 +16,32 @@ const queries = {
     try {
       pelicula = await fetchData.peliculas.read(id);
     } catch (error) {
-      throw new Error('Fallo en la operacion del servidor');
+      throw new Error("Fallo en la operacion del servidor");
     }
     return pelicula;
   },
-    //Personas
-    getPersonas: async () => {
-      let personas;
-      try {
-        personas = await fetchData.personas.list();
-      } catch {
-        throw new Error('Fallo en la operacion del servidor');
-      }
-      return personas;
-    },
-    getPersona: async (root, { id }) => {
-      let persona;
-      try {
-        persona = await fetchData.personas.read(id);
-      } catch (error) {
-        throw new Error('Fallo en la operacion del servidor');
-      }
-      return persona;
-    },
-  }
+  //Personas
+  getPersonas: async (root, { page }) => {
+    let personas;
+    try {
+      !page
+        ? (personas = await fetchData.personas.list())
+        : (personas = await fetchData.personas.listPage(page));
+      console.log(personas);
+      personas = personas.results;
+    } catch {
+      throw new Error("Fallo en la operacion del servidor");
+    }
+    return personas;
+  },
+  getPersona: async (root, { id }) => {
+    let persona;
+    try {
+      persona = await fetchData.personas.read(id);
+    } catch (error) {
+      throw new Error("Fallo en la operacion del servidor");
+    }
+    return persona;
+  },
+};
 module.exports = queries;
