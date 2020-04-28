@@ -32,6 +32,37 @@ const mutations = {
     }
     return `200: Eliminado exitoso de registro con id ${id}`;
   },
+  //Noticias
+  createNoticia: async (root, { input }) => {
+    let noticia;
+    try {
+      noticia = await fetchData.noticias.create(input);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+
+    return noticia;
+  },
+  editNoticia: async (root, { id, input }) => {
+    let noticia;
+    const defaults = await fetchData.noticias.read(id); //obtengo los datos default de la base
+    const newMovie = Object.assign(defaults, input); //esto evita que tome el resto de argumentos
+    //como nulos y se caiga el edit
+    try {
+      noticia = await fetchData.noticias.update(id, newMovie);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return noticia;
+  },
+  deleteNoticia: async (root, { id }) => {
+    try {
+      await fetchData.noticias.remove(id);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return `200: Eliminado exitoso de registro con id ${id}`;
+  },
   //Personas
   createPersona: async (root, { input }) => {
     let persona;
@@ -62,6 +93,37 @@ const mutations = {
     }
     return `200: Eliminado exitoso de registro con id ${id}`;
   },  
+  //Criticas
+  createCritica: async (root, { input }) => {
+    let critica;
+    try {
+      critica = await fetchData.criticas.create(input);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+
+    return critica;
+  },
+  editCritica: async (root, { id, input }) => {
+    let critica;
+    const defaults = await fetchData.criticas.read(id); //obtengo los datos default de la base
+    const newMovie = Object.assign(defaults, input); //esto evita que tome el resto de argumentos
+    //como nulos y se caiga el edit
+    try {
+      critica = await fetchData.criticas.update(id, newMovie);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return critica;
+  },
+  deleteCritica: async (root, { id }) => {
+    try {
+      await fetchData.criticas.remove(id);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return `200: Eliminado exitoso de registro con id ${id}`;
+  },
 };
 
 module.exports = mutations;

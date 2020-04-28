@@ -7,7 +7,9 @@ type Pelicula {
   duracion: Int!
   sinopsis: String!
   trailer: String!
+  portada: String!
 }
+
 type Persona {
   perid: ID!
   paiid: ID!
@@ -16,6 +18,7 @@ type Persona {
   perfechanacim: String!
   perlugarnacim: String!
 }
+
 type User {
   id: ID!
   name: String!
@@ -24,11 +27,33 @@ type User {
   password: String!
   remember_token: String
 }
-type Noticias {
-  peliculasid: ID!
+
+type Noticia {
   notid: ID!
+  peliculasid: ID!
   nottexto: String!
   notfecha: String!
+  nottitulo: String!
+  notimagen: String!
+}
+
+type Critica {
+  criid: ID!
+  peliculasid: ID!
+  id: ID!
+  critexto: String!
+  crifecha: String!
+  crivalor: Float!
+}
+
+type CriticaporValor {
+  promedio: Float!
+  peliculasid: ID!
+  nombre: String!
+  sinopsis: String!
+  fechadelanzamiento: String!
+  duracion: Int!
+  portada: String!
 }
 
 #Definicion de Inputs Create
@@ -39,13 +64,30 @@ input PeliculaInput {
   duracion: Int!
   sinopsis: String!
   trailer: String!
+  portada: String!
 }
+
 input PersonaInput {
   paiid: ID!
   pernombre: String!
   perapellido: String!
   perfechanacim: String!
   perlugarnacim: String!
+}
+input CriticaInput {
+  peliculasid: ID!
+  id: ID!
+  critexto: String!
+  crifecha: String!
+  crivalor: Float!
+}
+
+input NoticiaInput {
+  peliculasid: String!
+  nottexto: String!
+  notfecha: String!
+  nottitulo: String!
+  notimagen: String!
 }
 #Definicion de Inputs Edit
 input PeliculaEditInput {
@@ -55,7 +97,17 @@ input PeliculaEditInput {
   duracion: Int
   sinopsis: String
   trailer: String
+  portada: String
 }
+
+input NoticiaEditInput {
+  peliculasid: String
+  nottexto: String
+  notfecha: String
+  nottitulo: String
+  notimagen: String
+}
+
 input PersonaEditInput {
   paiid: ID
   pernombre: String
@@ -63,11 +115,20 @@ input PersonaEditInput {
   perfechanacim: String
   perlugarnacim: String
 }
+
+input CriticaEditInput {
+  peliculasid: ID
+  id: ID
+  critexto: String
+  crifecha: String
+  crivalor: Float
+}
+
 #Operaciones
 #Queries
 type Query {
   #Devuelve todas las peliculas
-  getPeliculas: [Pelicula]
+  getPeliculas(page: Int): [Pelicula]
   #Devuelve una pelicula por su ID
   getPelicula(id: ID!): Pelicula
 
@@ -76,10 +137,27 @@ type Query {
   #Devuelve un usuario por su ID
   getUser(id: ID!): User
 
+  #Devuelve todas las noticias
+  getNoticias: [Noticia]
+  #Devuelve una noticia por su ID
+  getNoticia(id: ID!): Noticia
+
   #Devuelve todas las personas
   getPersonas(page: Int): [Persona]
   #Devuelve una persona por su ID
   getPersona(id: ID!): Persona
+
+  #Devuelve todas las criticas
+  getCriticas: [Critica]
+  #Devuelve una critica por su ID
+  getCritica(id: ID!): Critica
+
+  #Devuelve todas las peliculas ordenadas por estreno
+  getPeliculasporEstreno(page: Int!): [Pelicula]
+  #Devuelve las criticas ordenadas por valor de las peliculas asociadas
+  getCriticasValor(page: Int!): [CriticaporValor]
+  #Devuelve las noticias ordenadas por fecha
+  getNoticiasFecha(page: Int!): [Noticia]
 }
 type Mutation {
   #Crea una nueva película
@@ -89,10 +167,24 @@ type Mutation {
   #Elimina una película por su ID
   deletePelicula(id: ID!): String
 
+  #Crea una nueva noticia
+  createNoticia(input: NoticiaInput): Noticia
+  #Edita una noticia por su ID
+  editNoticia(id: ID!, input: NoticiaEditInput): Noticia
+  #Elimina una Noticia por su ID
+  deleteNoticia(id: ID!): String
+
   #Crea una nueva persona
   createPersona(input: PersonaInput): Persona
   #Edita una persona por su ID
   editPersona(id: ID!, input: PersonaEditInput): Persona
   #Elimina una persona por su ID
   deletePersona(id: ID!): String
+
+  #Crea una nueva critica
+  createCritica(input: CriticaInput): Critica
+  #Edita una critica por su ID
+  editCritica(id: ID!, input: CriticaEditInput): Critica
+  #Elimina una Critica por su ID
+  deleteCritica(id: ID!): String
 }

@@ -2,7 +2,10 @@
 const fetch = require("node-fetch");
 
 require("dotenv").config();
-const BASE_URL = process.env.API_ENDPOINT || "http://127.0.0.1:8000/api";
+//const BASE_URL = process.env.API_ENDPOINT || "http://127.0.0.1:8000/api";
+
+const BASE_URL =
+  process.env.API_ENDPOINT || "https://proyectocinegithub.herokuapp.com/api";
 
 async function callApi(endpoint, options = {}) {
   options.headers = {
@@ -22,6 +25,9 @@ const api = {
     list() {
       //throw new Error('Not found');
       return callApi("/peliculas");
+    },
+    listPage(pageNumber) {
+      return callApi(`/peliculas?page=${pageNumber}`);
     },
     create(pelicula) {
       //throw new Error('500: Server Error');
@@ -123,6 +129,17 @@ const api = {
       return callApi(`/criticas/${criticaId}`, {
         method: "DELETE",
       });
+    },
+  },
+  customRequests: {
+    getPromedioCriticas(pageNumber) {
+      return callApi(`/customResource/criticas?page=${pageNumber}`);
+    },
+    getEstrenos(pageNumber) {
+      return callApi(`/customResource/estrenos?page=${pageNumber}`);
+    },
+    getNoticiasFecha(pageNumber) {
+      return callApi(`/customResource/noticias?page=${pageNumber}`);
     },
   },
 };
