@@ -44,6 +44,16 @@ type Critica {
   crivalor: Float!
 }
 
+type CriticaporValor {
+  promedio: Float!
+  peliculasid: ID!
+  nombre: String!
+  sinopsis: String!
+  fechadelanzamiento: String!
+  duracion: Int!
+  portada: String!
+}
+
 #Definicion de Inputs Create
 input PeliculaInput {
   claid: ID!
@@ -113,7 +123,7 @@ input CriticaEditInput {
 #Queries
 type Query {
   #Devuelve todas las peliculas
-  getPeliculas: [Pelicula]
+  getPeliculas(page: Int): [Pelicula]
   #Devuelve una pelicula por su ID
   getPelicula(id: ID!): Pelicula
 
@@ -136,6 +146,11 @@ type Query {
   getCriticas: [Critica]
   #Devuelve una critica por su ID
   getCritica(id: ID!): Critica
+
+  #Devuelve todas las peliculas ordenadas por estreno
+  getPeliculasporEstreno(page: Int!): [Pelicula]
+  #Devuelve las criticas ordenadas por valor de las peliculas asociadas
+  getCriticasValor(page: Int!): [CriticaporValor]
 }
 type Mutation {
   #Crea una nueva película

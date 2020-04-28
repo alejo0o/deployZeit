@@ -24,6 +24,9 @@ const api = {
       //throw new Error('Not found');
       return callApi('/peliculas');
     },
+    listPage(pageNumber) {
+      return callApi(`/peliculas?page=${pageNumber}`);
+    },
     create(pelicula) {
       //throw new Error('500: Server Error');
       return callApi(`/peliculas`, {
@@ -120,6 +123,14 @@ const api = {
       return callApi(`/criticas/${criticaId}`, {
         method: 'DELETE',
       });
+    },
+  },
+  customRequests: {
+    getPromedioCriticas(pageNumber) {
+      return callApi(`/customResource/criticas?page=${pageNumber}`);
+    },
+    getEstrenos(pageNumber) {
+      return callApi(`/customResource/estrenos?page=${pageNumber}`);
     },
   },
 };

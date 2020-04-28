@@ -2,10 +2,13 @@
 const fetchData = require('./callapi');
 const queries = {
   //Peliculas
-  getPeliculas: async () => {
+  getPeliculas: async (root, { page }) => {
     let peliculas;
     try {
-      peliculas = await fetchData.peliculas.list();
+      !page
+        ? (peliculas = await fetchData.peliculas.list())
+        : (peliculas = await fetchData.peliculas.listPage(page));
+      peliculas = peliculas.results;
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
@@ -76,6 +79,28 @@ const queries = {
       throw new Error('Fallo en la operacion del servidor');
     }
     return critica;
+  },
+  ////////RECURSOS PERSONALIZADOS
+  getPeliculasporEstreno: async (root, { page }) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getEstrenos(page);
+      recursos = recursos.results;
+      console.log(recursos);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
+  getCriticasValor: async (root, { page }) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getPromedioCriticas(page);
+      recursos = recursos.results;
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
   },
 };
 
