@@ -34,7 +34,7 @@ const queries = {
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
-    return persona;
+    return personas;
   },
   getPersona: async (root, { id }) => {
     let persona;
