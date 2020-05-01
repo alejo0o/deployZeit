@@ -153,6 +153,16 @@ const api = {
     getNoticiasFecha(pageNumber) {
       return callApi(`/customResource/noticias?page=${pageNumber}`);
     },
+    getCriticasPromedioPelicula(pageNumber, id) {
+      return callApi(
+        `/customResource/${id}/criticaPelicula?page=${pageNumber}`
+      );
+    },
+    getCriticasUsuarioPelicula(pageNumber, idMovie, idUser) {
+      return callApi(
+        `/customResource/${idMovie}/${idUser}/criticaUsuarioPelicula?page=${pageNumber}`
+      );
+    },
   },
 };
 

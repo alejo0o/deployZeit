@@ -73,6 +73,15 @@ type AnimesporEstreno {
   portada: String!
 }
 
+type CriticasPeliculaUsuario {
+  criid: ID!
+  peliculasid: ID!
+  id: ID!
+  critexto: String!
+  crifecha: String!
+  crivalor: Float!
+}
+
 #Definicion de Inputs Create
 input PeliculaInput {
   claid: ID!
@@ -175,10 +184,18 @@ type Query {
   getCriticasValor(page: Int!): [CriticaporValor]
   #Devuelve todos los animes por estreno
   getAnimesporEstreno(page: Int!): [AnimesporEstreno]
-  #Devuelve las criticas de los usuarios a una pelicula
+  #Devuelve las criticas de los usuarios a las pelicula
   getCriticasporPelicula(page: Int!, id: ID!): [CriticasporPelicula]
   #Devuelve las noticias ordenadas por fecha
   getNoticiasFecha(page: Int!): [Noticia]
+  #Devuelve una critica por ID de usuario y de pelicula
+  getCriticasUsuarioPelicula(
+    page: Int!
+    idMovie: ID!
+    idUser: ID!
+  ): CriticasPeliculaUsuario
+  #Devuelve la informacion de una pelicula con su critica promedio
+  getCriticasPromedioPelicula(page: Int!, id: ID!): CriticaporValor
 }
 type Mutation {
   #Crea una nueva película

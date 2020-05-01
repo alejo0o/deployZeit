@@ -145,6 +145,35 @@ const queries = {
     }
     return recursos;
   },
+  getCriticasPromedioPelicula: async (root, { page, id }) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getCriticasPromedioPelicula(
+        page,
+        id
+      );
+      recursos = Object.values(recursos.results);
+      recursos = recursos[0];
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
+  getCriticasUsuarioPelicula: async (root, { page, idMovie, idUser }) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getCriticasUsuarioPelicula(
+        page,
+        idMovie,
+        idUser
+      );
+      recursos = Object.values(recursos.results);
+      recursos = recursos[0];
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
 };
 
 module.exports = queries;
