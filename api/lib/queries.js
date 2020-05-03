@@ -95,7 +95,6 @@ const queries = {
     let recursos;
     try {
       recursos = await fetchData.customRequests.getEstrenos(page);
-      recursos = recursos.results;
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
@@ -105,7 +104,6 @@ const queries = {
     let recursos;
     try {
       recursos = await fetchData.customRequests.getPromedioCriticas(page);
-      recursos = recursos.results;
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
@@ -115,8 +113,6 @@ const queries = {
     let recursos;
     try {
       recursos = await fetchData.customRequests.getNoticiasFecha(page);
-      recursos = recursos.results;
-      console.log(recursos);
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
@@ -126,7 +122,6 @@ const queries = {
     let recursos;
     try {
       recursos = await fetchData.customRequests.getAnimesEstreno(page);
-      recursos = recursos.results;
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
@@ -139,7 +134,6 @@ const queries = {
         page,
         id
       );
-      recursos = recursos.results;
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }

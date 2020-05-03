@@ -66,6 +66,7 @@ type CriticasporPelicula {
 }
 
 type AnimesporEstreno {
+  peliculasid: String!
   nombre: String!
   fechadelanzamiento: String!
   duracion: Int!
@@ -80,6 +81,38 @@ type CriticasPeliculaUsuario {
   critexto: String!
   crifecha: String!
   crivalor: Float!
+}
+
+type info {
+  count: Int
+  pages: Int
+  next: String
+  prev: String
+}
+
+type ObtenerCriticaporValor {
+  info: info
+  results: [CriticaporValor]!
+}
+
+type NoticiasFecha {
+  info: info
+  results: [Noticia]!
+}
+
+type ObtenerCriticasporPelicula {
+  info: info
+  results: [CriticasporPelicula]!
+}
+
+type ObtenerPeliculasEstreno {
+  info: info
+  results: [Pelicula]!
+}
+
+type ObtenerAnimesEstreno {
+  info: info
+  results: [AnimesporEstreno]!
 }
 
 #Definicion de Inputs Create
@@ -179,15 +212,15 @@ type Query {
   getCritica(id: ID!): Critica
 
   #Devuelve todas las peliculas ordenadas por estreno
-  getPeliculasporEstreno(page: Int!): [Pelicula]
+  getPeliculasporEstreno(page: Int!): ObtenerPeliculasEstreno
   #Devuelve las criticas ordenadas por valor de las peliculas asociadas
-  getCriticasValor(page: Int!): [CriticaporValor]
+  getCriticasValor(page: Int!): ObtenerCriticaporValor
   #Devuelve todos los animes por estreno
-  getAnimesporEstreno(page: Int!): [AnimesporEstreno]
+  getAnimesporEstreno(page: Int!): ObtenerAnimesEstreno
   #Devuelve las criticas de los usuarios a las pelicula
-  getCriticasporPelicula(page: Int!, id: ID!): [CriticasporPelicula]
+  getCriticasporPelicula(page: Int!, id: ID!): ObtenerCriticasporPelicula
   #Devuelve las noticias ordenadas por fecha
-  getNoticiasFecha(page: Int!): [Noticia]
+  getNoticiasFecha(page: Int!): NoticiasFecha
   #Devuelve una critica por ID de usuario y de pelicula
   getCriticasUsuarioPelicula(
     page: Int!
