@@ -177,6 +177,15 @@ const queries = {
     }
     return recursos;
   },
+  getPeliculaDirector: async (root, { id }) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getPeliculaDirector(id);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
 };
 
 module.exports = queries;

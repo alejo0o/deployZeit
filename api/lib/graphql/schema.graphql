@@ -95,6 +95,18 @@ type EstrenosDirector {
   perapellido: String!
 }
 
+type PeliculaDirector {
+  peliculasid: String!
+  nombre: String!
+  fechadelanzamiento: String!
+  duracion: Int!
+  sinopsis: String!
+  trailer: String!
+  portada: String!
+  pernombre: String!
+  perapellido: String!
+}
+
 type info {
   count: Int
   pages: Int
@@ -248,6 +260,8 @@ type Query {
   getCriticasPromedioPelicula(page: Int!, id: ID!): CriticaporValor
   #Devuelve la pelicula con el director asociado
   getEstrenosDirector(page: Int!): ObtenerEstrenosDirector
+  #Devuelve la informacion de una pelicula con su director
+  getPeliculaDirector(id: ID!): PeliculaDirector
 }
 type Mutation {
   #Crea una nueva película

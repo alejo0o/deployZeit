@@ -166,6 +166,9 @@ const api = {
     getEstrenosDirector(pageNumber) {
       return callApi(`/customResource/estrenosDirector?page=${pageNumber}`);
     },
+    getPeliculaDirector(id) {
+      return callApi(`/customResource/${id}/peliculasDirector`);
+    },
   },
 };
 
