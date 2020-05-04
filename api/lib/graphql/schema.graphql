@@ -83,6 +83,18 @@ type CriticasPeliculaUsuario {
   crivalor: Float!
 }
 
+type EstrenosDirector {
+  peliculasid: ID!
+  nombre: String!
+  fechadelanzamiento: String!
+  duracion: Int!
+  sinopsis: String!
+  trailer: String!
+  portada: String!
+  pernombre: String!
+  perapellido: String!
+}
+
 type info {
   count: Int
   pages: Int
@@ -113,6 +125,11 @@ type ObtenerPeliculasEstreno {
 type ObtenerAnimesEstreno {
   info: info
   results: [AnimesporEstreno]!
+}
+
+type ObtenerEstrenosDirector {
+  info: info
+  results: [EstrenosDirector]!
 }
 
 #Definicion de Inputs Create
@@ -229,6 +246,8 @@ type Query {
   ): CriticasPeliculaUsuario
   #Devuelve la informacion de una pelicula con su critica promedio
   getCriticasPromedioPelicula(page: Int!, id: ID!): CriticaporValor
+  #Devuelve la pelicula con el director asociado
+  getEstrenosDirector(page: Int!): ObtenerEstrenosDirector
 }
 type Mutation {
   #Crea una nueva película

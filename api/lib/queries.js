@@ -168,6 +168,15 @@ const queries = {
     }
     return recursos;
   },
+  getEstrenosDirector: async (root, { page }) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getEstrenosDirector(page);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
 };
 
 module.exports = queries;

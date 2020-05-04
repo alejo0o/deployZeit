@@ -163,6 +163,9 @@ const api = {
         `/customResource/${idMovie}/${idUser}/criticaUsuarioPelicula?page=${pageNumber}`
       );
     },
+    getEstrenosDirector(pageNumber) {
+      return callApi(`/customResource/estrenosDirector?page=${pageNumber}`);
+    },
   },
 };
 
