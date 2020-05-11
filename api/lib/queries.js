@@ -186,6 +186,15 @@ const queries = {
     }
     return recursos;
   },
+  getUsuarioporID: async (root, { id }) => {
+    let usuario;
+    try {
+      usuario = await fetchData.usuarios.read(id);
+    } catch (error) {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return usuario;
+  },
 };
 
 module.exports = queries;

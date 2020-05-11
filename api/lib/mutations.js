@@ -76,8 +76,8 @@ const mutations = {
   },
   editPersona: async (root, { id, input }) => {
     let persona;
-    const defaults = await fetchData.personas.read(id); 
-    const newPersona = Object.assign(defaults, input); 
+    const defaults = await fetchData.personas.read(id);
+    const newPersona = Object.assign(defaults, input);
     try {
       persona = await fetchData.personas.update(id, newPersona);
     } catch {
@@ -92,7 +92,7 @@ const mutations = {
       throw new Error('Fallo en la operacion del servidor');
     }
     return `200: Eliminado exitoso de registro con id ${id}`;
-  },  
+  },
   //Criticas
   createCritica: async (root, { input }) => {
     let critica;
@@ -119,6 +119,36 @@ const mutations = {
   deleteCritica: async (root, { id }) => {
     try {
       await fetchData.criticas.remove(id);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return `200: Eliminado exitoso de registro con id ${id}`;
+  },
+  //Usuarios
+  createUsuario: async (root, { input }) => {
+    let usuario;
+    try {
+      usuario = await fetchData.usuarios.create(input);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return usuario;
+  },
+  editUsuario: async (root, { id, input }) => {
+    let usuario;
+    const defaults = await fetchData.usuarios.read(id); //obtengo los datos default de la base
+    const newUser = Object.assign(defaults, input); //esto evita que tome el resto de argumentos
+    //como nulos y se caiga el edit
+    try {
+      usuario = await fetchData.usuarios.update(id, newUser);
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return usuario;
+  },
+  deleteUsuario: async (root, { id }) => {
+    try {
+      await fetchData.usuarios.remove(id);
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
