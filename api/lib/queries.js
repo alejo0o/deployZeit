@@ -186,6 +186,36 @@ const queries = {
     }
     return recursos;
   },
+  getBuscarNoticia: async (root, { page, word}) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getBuscarNoticia(
+        page,
+        word
+      );
+      recursos = Object.values(recursos.results);
+      recursos = recursos[0];
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
+  getBuscarPelicula: async (root, { page, word}) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getBuscarPelicula(
+        page,
+        word
+      );
+      recursos = Object.values(recursos.results);
+      recursos = recursos[0];
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
+  
+  
 };
 
 module.exports = queries;

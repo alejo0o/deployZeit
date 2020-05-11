@@ -262,6 +262,10 @@ type Query {
   getEstrenosDirector(page: Int!): ObtenerEstrenosDirector
   #Devuelve la informacion de una pelicula con su director
   getPeliculaDirector(id: ID!): PeliculaDirector
+  #Devuelve noticia dependiendo de la palabra buscada
+  getBuscarNoticia(page:Ïnt!, word:String!):[Noticia]
+  #Devuelve pelicula dependiendo de la palabra buscada
+  getBuscarPelicula(page:Ïnt!, word:String!):[Pelicula]
 }
 type Mutation {
   #Crea una nueva película
