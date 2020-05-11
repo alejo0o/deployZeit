@@ -137,6 +137,28 @@ const api = {
       });
     },
   },
+  usuarios: {
+    create(usuario) {
+      return callApi(`/users2`, {
+        method: 'POST',
+        body: JSON.stringify(usuario),
+      });
+    },
+    read(usuarioId) {
+      return callApi(`/users2/${usuarioId}`);
+    },
+    update(usuarioId, updates) {
+      return callApi(`/users2/${usuarioId}`, {
+        method: 'PUT',
+        body: JSON.stringify(updates),
+      });
+    },
+    remove(usuarioId) {
+      return callApi(`/users2/${usuarioId}`, {
+        method: 'DELETE',
+      });
+    },
+  },
   customRequests: {
     getPromedioCriticas(pageNumber) {
       return callApi(`/customResource/criticas?page=${pageNumber}`);

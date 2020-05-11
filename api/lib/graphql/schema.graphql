@@ -107,6 +107,18 @@ type PeliculaDirector {
   perapellido: String!
 }
 
+type Usuario {
+  id: ID!
+  nickname: String!
+  name: String!
+  picture: String!
+  email: String!
+  sub: String!
+  email_verified_at: String!
+  remember_token: String!
+}
+
+#Tipos compuestos
 type info {
   count: Int
   pages: Int
@@ -144,6 +156,16 @@ type ObtenerEstrenosDirector {
   results: [EstrenosDirector]!
 }
 
+type ObtenerBusquedasPorNoticias {
+  info: info
+  results: [Noticia]!
+}
+
+type ObtenerBusquedasPorPeliculas {
+  info: info
+  results: [Pelicula]!
+}
+
 #Definicion de Inputs Create
 input PeliculaInput {
   claid: ID!
@@ -177,6 +199,17 @@ input NoticiaInput {
   nottitulo: String!
   notimagen: String!
 }
+
+input UsuarioInput {
+  nickname: String!
+  name: String!
+  picture: String!
+  email: String!
+  sub: String!
+  email_verified_at: String
+  remember_token: String
+}
+
 #Definicion de Inputs Edit
 input PeliculaEditInput {
   claid: ID
@@ -210,6 +243,16 @@ input CriticaEditInput {
   critexto: String
   crifecha: String
   crivalor: Float
+}
+
+input UsuarioEditInput {
+  nickname: String
+  name: String
+  picture: String
+  email: String
+  sub: String
+  email_verified_at: String
+  remember_token: String
 }
 
 #Operaciones
@@ -262,10 +305,12 @@ type Query {
   getEstrenosDirector(page: Int!): ObtenerEstrenosDirector
   #Devuelve la informacion de una pelicula con su director
   getPeliculaDirector(id: ID!): PeliculaDirector
+  #Devuelve un usuario segun su ID
+  getUsuarioporID(id: ID!): Usuario
   #Devuelve noticia dependiendo de la palabra buscada
-  getBuscarNoticia(page:Ïnt!, word:String!):[Noticia]
+  getBuscarNoticia(page:Int!, word:String!):ObtenerBusquedasPorNoticias
   #Devuelve pelicula dependiendo de la palabra buscada
-  getBuscarPelicula(page:Ïnt!, word:String!):[Pelicula]
+  getBuscarPelicula(page:Int!, word:String!):ObtenerBusquedasPorPeliculas
 }
 type Mutation {
   #Crea una nueva película
@@ -295,4 +340,11 @@ type Mutation {
   editCritica(id: ID!, input: CriticaEditInput): Critica
   #Elimina una Critica por su ID
   deleteCritica(id: ID!): String
+
+  #Crea un nuevo usuario
+  createUsuario(input: UsuarioInput!): Usuario
+  #Edita un usuario existente
+  editUsuario(id: ID!, input: UsuarioEditInput): Usuario
+  #Elimina un usuario existente
+  deleteUsuario(id: ID!): String
 }

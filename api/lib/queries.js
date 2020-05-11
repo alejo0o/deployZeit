@@ -186,6 +186,15 @@ const queries = {
     }
     return recursos;
   },
+  getUsuarioporID: async (root, { id }) => {
+    let usuario;
+    try {
+      usuario = await fetchData.usuarios.read(id);
+    } catch (error) {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return usuario;
+  },
   getBuscarNoticia: async (root, { page, word}) => {
     let recursos;
     try {
@@ -193,8 +202,6 @@ const queries = {
         page,
         word
       );
-      recursos = Object.values(recursos.results);
-      recursos = recursos[0];
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
@@ -207,15 +214,11 @@ const queries = {
         page,
         word
       );
-      recursos = Object.values(recursos.results);
-      recursos = recursos[0];
     } catch {
       throw new Error('Fallo en la operacion del servidor');
     }
     return recursos;
   },
-  
-  
 };
 
 module.exports = queries;
