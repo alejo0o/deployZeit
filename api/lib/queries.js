@@ -195,6 +195,30 @@ const queries = {
     }
     return usuario;
   },
+  getBuscarNoticia: async (root, { page, word}) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getBuscarNoticia(
+        page,
+        word
+      );
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
+  getBuscarPelicula: async (root, { page, word}) => {
+    let recursos;
+    try {
+      recursos = await fetchData.customRequests.getBuscarPelicula(
+        page,
+        word
+      );
+    } catch {
+      throw new Error('Fallo en la operacion del servidor');
+    }
+    return recursos;
+  },
 };
 
 module.exports = queries;

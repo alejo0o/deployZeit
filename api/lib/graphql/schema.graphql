@@ -156,6 +156,16 @@ type ObtenerEstrenosDirector {
   results: [EstrenosDirector]!
 }
 
+type ObtenerBusquedasPorNoticias {
+  info: info
+  results: [Noticia]!
+}
+
+type ObtenerBusquedasPorPeliculas {
+  info: info
+  results: [Pelicula]!
+}
+
 #Definicion de Inputs Create
 input PeliculaInput {
   claid: ID!
@@ -297,6 +307,10 @@ type Query {
   getPeliculaDirector(id: ID!): PeliculaDirector
   #Devuelve un usuario segun su ID
   getUsuarioporID(id: ID!): Usuario
+  #Devuelve noticia dependiendo de la palabra buscada
+  getBuscarNoticia(page:Int!, word:String!):ObtenerBusquedasPorNoticias
+  #Devuelve pelicula dependiendo de la palabra buscada
+  getBuscarPelicula(page:Int!, word:String!):ObtenerBusquedasPorPeliculas
 }
 type Mutation {
   #Crea una nueva película
