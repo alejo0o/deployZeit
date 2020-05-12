@@ -308,9 +308,11 @@ type Query {
   #Devuelve un usuario segun su ID
   getUsuarioporID(id: ID!): Usuario
   #Devuelve noticia dependiendo de la palabra buscada
-  getBuscarNoticia(page:Int!, word:String!):ObtenerBusquedasPorNoticias
+  getBuscarNoticia(page: Int!, word: String!): ObtenerBusquedasPorNoticias
   #Devuelve pelicula dependiendo de la palabra buscada
-  getBuscarPelicula(page:Int!, word:String!):ObtenerBusquedasPorPeliculas
+  getBuscarPelicula(page: Int!, word: String!): ObtenerBusquedasPorPeliculas
+  #Obtiene el usuario por el codigo de sub
+  getUsuarioporSub(sub: String!): Usuario
 }
 type Mutation {
   #Crea una nueva película

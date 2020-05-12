@@ -5,7 +5,7 @@ require('dotenv').config();
 //const BASE_URL = process.env.API_ENDPOINT || 'http://127.0.0.1:8000/api';
 
 const BASE_URL =
-process.env.API_ENDPOINT || 'https://proyectocinegithub.herokuapp.com/api';
+  process.env.API_ENDPOINT || 'https://proyectocinegithub.herokuapp.com/api';
 
 async function callApi(endpoint, options = {}) {
   options.headers = {
@@ -200,6 +200,9 @@ const api = {
       return callApi(
         `/customResource/${word}/buscarNoticia?page=${pageNumber}`
       );
+    },
+    getUsuarioporSub(sub) {
+      return callApi(`/customResource/${sub}/obtenerUsuario`);
     },
   },
 };
