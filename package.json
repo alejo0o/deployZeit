@@ -20,7 +20,7 @@
     "fs": "0.0.1-security",
     "graphql": "^15.0.0",
     "graphql-tools": "^5.0.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.3",
